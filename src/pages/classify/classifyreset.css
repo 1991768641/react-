@@ -1,0 +1,9 @@
+.am-tabs-pane-wrap,.am-tabs-pane-wrap-active{
+    background: #fff;
+}
+
+.liactive{
+    color: #ff464e;
+    border-left: 4px solid #ff464e !important;
+    background-color: #fff;
+}
