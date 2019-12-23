@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.js';
+// import 'assets/iconfont/iconfont.css';
+
 import * as serviceWorker from './serviceWorker';
 
 // import 'lib-flexible';
 
 import 'assets/lib-flexible';
+import 'assets/iconfont/iconfont.css';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

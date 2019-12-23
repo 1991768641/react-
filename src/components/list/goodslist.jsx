@@ -15,8 +15,8 @@ class goodslist extends Component {
         goodslist1: [],
         goodslist2:[],
         newlist1: [],
-        newlist2:[],
-        flag:this.props.flag
+        newlist2:[]
+        // flag:this.props.flag
     }
 
     // static getDerivedStateFromProps(props, state) {
@@ -51,6 +51,7 @@ class goodslist extends Component {
         this.setState({
             Bscroll: scroll,
         })
+
         this.scrolldata();
         this.scrolltoTop();
         // console.log()
@@ -86,11 +87,11 @@ class goodslist extends Component {
             const { Bscroll } = this.state;
             Bscroll.on("pullingUp", async () => {
                 let { newlist1,newlist2,num1,num2 } = this.state;
-                if(this.props.location.pathname==='/special'){
+                if(this.props.location.pathname==='/index/special'){
                     if (newlist1.length > 0) {
                         num1++;
                         this.setState({
-                            num1:num1
+                            num1:num1  
                         })
                         await this.loaddata(num1);
                     }
@@ -114,7 +115,7 @@ class goodslist extends Component {
     }
 
     async loaddata(num) {
-        if (this.props.location.pathname === '/special') {
+        if (this.props.location.pathname === '/index/special') {
            
             let result = await get({
                 url: `https://webservice.juanpi.com/api/getGoods?page=${num}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
@@ -140,11 +141,11 @@ class goodslist extends Component {
         }   
     }
     render() {
-
+        let pathname=this.props.location.pathname;
         return (
             <Goodslistwrap>
                 {
-                    this.props.location.pathname==='/special'?
+                    pathname==='/index/special'?
                     this.state.goodslist1.map((value) => {
                         return (
                             <div className="goodlist" key={value.goods_id+'1'}>

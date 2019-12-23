@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ Component }  from 'react'
 import {TabBar} from 'antd-mobile';
 import home from 'assets/images/home.png';
 import homeactive from 'assets/images/homeactive.png';
@@ -12,134 +12,175 @@ import './Layout.css';
 import Home from './home/Home.jsx';
 import Classify from './classify/Classify.jsx';
 import My from './my/my.js';
+import Cart from './cart/cart.js';
+import { withRouter} from 'react-router-dom'
+import { connect } from 'react-redux';
 
-class Layout extends React.Component {
+@connect((state)=>({
+  IsShowMap:state.home.IsShowMap
+}))
+class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'blueTab',
+      pathname:this.props.location.pathname,
       hidden: false,
       fullScreen: true,
     };
   }
 
+  componentDidMount(){
+    let {pathname} =this.state;
+    if(pathname==='/'){
+      this.setState({
+        pathname:'/index/special'
+      })
+    }else if(pathname==='/index/single'){
+      this.setState({
+        pathname:'/index/special'
+      })
+    }else if(pathname==='/cart/map'){
+      this.setState({
+        pathname:'/cart/menu'
+      })
+    }
+    if(this.props.location.pathname==='/'){
+      this.props.history.push('/index/special')
+    }
+  }
+
   render() {
+    let {pathname} =this.state;
+    // console.log(this.props.IsShowMap);
     return (
+      
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%',maxWidth:'540px',left:'50%',transform: 'translate(-50%, 0)', top: 0 } : { height: 400 }}>
         <TabBar
           unselectedTintColor="#333"
           tintColor="#ff464e"
           hidden={this.state.hidden}
         >
-          <TabBar.Item
+          {
+            [
+              <TabBar.Item
             title="首页"
             key="home"
             icon={<div style={{
-              width: '2.0889rem',
-              height: '1.024rem',
-              background: `url(${home}) center center /  0.6533rem 0.6533rem no-repeat` }}
+              width: '1.0667rem',
+              height: '1.0667rem',
+              background: `url(${home}) center center /  1.0667rem 1.0667rem no-repeat` }}
             />
             }
             selectedIcon={<div style={{
-              width: '2.0889rem',
-              height: '1.024rem',
-              background: `url(${homeactive}) center center / 0.6533rem 0.6533rem no-repeat` }}
+              width: '1.0667rem',
+              height: '1.0667rem',
+              background: `url(${homeactive}) center center / 1.0667rem 1.0667rem no-repeat` }}
             />
             }
-            selected={this.state.selectedTab === 'blueTab'}
             onPress={() => {
+              this.props.history.push('/index/special')
               this.setState({
-                selectedTab: 'blueTab',
-              });
+                pathname:'/index/special'
+              })
             }}
+            selected={pathname === '/index/special'}
             data-seed="logId"
           >
             <Home></Home>
             
-          </TabBar.Item>
+          </TabBar.Item>,
           <TabBar.Item
             icon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background: `url(${classfy}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background: `url(${classfy}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             selectedIcon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background: `url(${classfyactive}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background: `url(${classfyactive}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             title="分类"
             key="classify"
-            selected={this.state.selectedTab === 'redTab'}
             onPress={() => {
+              // Ae226622
+              this.props.history.push('/classify')
               this.setState({
-                selectedTab: 'redTab',
-              });
+                pathname:'/classify'
+              })
             }}
+            selected={pathname === '/classify'}
             data-seed="logId1"
           >
             <Classify></Classify>
-          </TabBar.Item>
+          </TabBar.Item>,
           <TabBar.Item
             icon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background:`url(${cart}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background:`url(${cart}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             selectedIcon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background: `url(${cartactive}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background: `url(${cartactive}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             title="购物车"
             key="cart"
-            selected={this.state.selectedTab === 'greenTab'}
+            selected={pathname === '/cart/menu'}
             onPress={() => {
+              this.props.history.push('/cart/menu')
               this.setState({
-                selectedTab: 'greenTab',
-              });
+                pathname:'/cart/menu'
+              })
             }}
           >
-            <div>123</div>
-          </TabBar.Item>
-          <TabBar.Item
+            <Cart></Cart>
+          </TabBar.Item>,
+          <TabBar.Item 
+            className="myclass"
             icon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background:`url(${my}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background:`url(${my}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             selectedIcon={
               <div style={{
-                width: '2.0889rem',
-                height: '1.024rem',
-                background: `url(${myactive}) center center /  0.6533rem 0.6533rem no-repeat`}}
+                width: '1.0667rem',
+                height: '1.0667rem',
+                background: `url(${myactive}) center center /  1.0667rem 1.0667rem no-repeat`}}
               />
             }
             title="我的卷皮"
             key="my"
-            selected={this.state.selectedTab === 'yellowTab'}
+            selected={pathname === '/my'}
             onPress={() => {
+              this.props.history.push('/my')
               this.setState({
-                selectedTab: 'yellowTab',
-              });
+                pathname:'/my'
+              })
             }}
           >
             <My></My>
           </TabBar.Item>
+            ].filter((Item,index)=>{
+              return (index===2&&this.props.IsShowMap)||index!==2
+            })
+          }  
         </TabBar>
       </div>
     );
   }
 }
 
-export default Layout
+export default withRouter(Layout)

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import MyHaed from './myHead';
+import Mybody from './myBody';
+import MyIsMapTrue from './myIsMapTrue.jsx';
 
-export default (props)=>{
-    let [counter,setcount]=useState(0);
-
-    // let handleclick=()=>{
-    //     console.log(0)
-    // }
-
+function My(props){
+    
     return (
         <>
             <MyHaed></MyHaed>
+            <Mybody></Mybody>
+            <MyIsMapTrue></MyIsMapTrue>
         </>
     )
 }
+export default My

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            height: 100%
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=IgGMOjLEyu6uyk0okLzFZhFdqFBbwfei">
+
+    </script>
+</head>
+
+<body>
+    <div id="container" style="height: 100%;"></div>
+    <script type="text/javascript">
+        var map = new BMap.Map("container");
+        var point = new BMap.Point(118.320321, 32.282388);
+        map.centerAndZoom(point, 15);
+        function addMarker(point, index) {
+            var myIcon = new BMap.Icon("./logo192.png", new BMap.Size(30, 30), {
+                imageSize: new BMap.Size(30,30),
+                imageOffset: new BMap.Size(0, 0 - index*25)
+            });
+            var marker = new BMap.Marker(point, {
+                icon: myIcon
+            });
+            map.addOverlay(marker);
+        }
+        addMarker(point,0)
+    </script>
+</body>
+
+</html>

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import {Switch,Route,Redirect,withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {Boutiquewrap} from './stylehome.js';
-import Goodlist1 from 'components/list/goodslist.jsx';
-import Goodlist2 from 'components/list/goodslist.jsx';
+import Goodlist from 'components/list/goodslist.jsx';
 
-@withRouter
+
 class Boutique extends Component {
     state={
         classtitle:this.props.history.location.pathname.substr(1)
@@ -17,55 +16,53 @@ class Boutique extends Component {
             classtitle:this.props.history.location.pathname.substr(1)
         })
     }
+    componentDidMount(){
+        if(this.state.classtitle.length===0){
+            this.setState({
+                classtitle:'index/special'
+            })
+        }
+    }
 
     render() {
-        console.log(this.state.classtitle)
+        let pathname=this.props.location.pathname;
         return ( 
             <>
                 <Boutiquewrap id="scrollstop">
                 <ul>
-                    <li onClick={this.handleclick} title="special">
+                    <li onClick={this.handleclick} title="index/special">
                         {
-                            this.state.classtitle==='special'?( <span className="active"  title="special">精品专场</span>):
-                            (<span title="special">精品专场</span>)
+                            pathname==='/index/special'?( <span className="active"  title="index/special">精品专场</span>):
+                            (<span title="index/special">精品专场</span>)
                         }
                     </li>
-                    <li onClick={this.handleclick} title="single">
+                    <li onClick={this.handleclick} title="index/single">
                         {
-                            this.state.classtitle==='single'?( <span className="active"  title="single">精选单品</span>):
-                            (<span title="single">精选单品</span>)
+                            pathname==='/index/single'?( <span className="active"  title="index/single">精选单品</span>):
+                            (<span title="index/single">精选单品</span>)
                         }
                     </li>
                 </ul>
                 </Boutiquewrap>
-
-                <Switch>
+                <Goodlist></Goodlist>
+                {/* <Switch>
                     <Route
-                        path="/special"
+                        path="/index/special"
                         render={()=>(
-                            <Goodlist1
-                                flag="special"
-                            ></Goodlist1>
+                            <Goodlist1></Goodlist1>
                         )}
                     />
 
                     <Route
-                        path="/single"
+                        path="/index/single"
                         render={()=>(     
-                            <Goodlist2
-                                flag="single"
-                            ></Goodlist2>
+                            
                         )}
                     />
-                    <Redirect
-                        from="/"
-                        to="/special"
-                    />
-                
-                </Switch>
+                </Switch> */}
             </>
         )
     }
 }
 
-export default Boutique
+export default withRouter(Boutique)

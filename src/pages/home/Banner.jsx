@@ -3,9 +3,13 @@ import { Bannerwrap } from './stylehome';
 
 export default class Banner extends Component {
     render() {
-
+        // console.log(this.props.bannerresult1[0])
         return (
            <Bannerwrap>
+                <div className="banner0">
+                   <img src={this.props.bannerresult0[0].child[0].pic} alt=""/>
+                </div>
+
                 <div className="bannner1">
                     <div className="bannner1-left">
                         <img src={this.props.bannerresult1[0].child[0].pic} alt="" />

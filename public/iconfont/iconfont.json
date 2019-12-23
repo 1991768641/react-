@@ -1,0 +1,37 @@
+{
+  "id": "1571799",
+  "name": "juanpi",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "30433",
+      "name": "deliver",
+      "font_class": "deliver",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "52509",
+      "name": "recharge",
+      "font_class": "recharge",
+      "unicode": "e6ed",
+      "unicode_decimal": 59117
+    },
+    {
+      "icon_id": "194872",
+      "name": "calendar",
+      "font_class": "calendar",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "212332",
+      "name": "group",
+      "font_class": "group",
+      "unicode": "e753",
+      "unicode_decimal": 59219
+    }
+  ]
+}

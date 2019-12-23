@@ -32,10 +32,11 @@ class Appbody extends Component {
     render() {
         let swiperresult=this.props.list.swpierlist;
         let hotresult=this.props.list.hotlist;
+        let bannerresult0=this.props.list.banner0;
         let bannerresult1=this.props.list.banner1;
         let bannerresult2=this.props.list.banner2;
         let bannerresult3=this.props.list.banner3;
-        
+
         return (
             <div>
                 <Search></Search>
@@ -59,6 +60,7 @@ class Appbody extends Component {
                 {
                     bannerresult1&&bannerresult2&&(
                         <Banner
+                            bannerresult0={bannerresult0}
                             bannerresult1={bannerresult1}
                             bannerresult2={bannerresult2}
                             bannerresult3={bannerresult3}

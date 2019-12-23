@@ -1,8 +1,6 @@
 import {combineReducers} from 'redux';
-import {reducers as list} from 'pages/index.js';
-
-// console.log(list)
+import {reducers as home} from 'pages/index.js';
 
 export default combineReducers({
-    home:list
+    home
 })

@@ -75,6 +75,14 @@ export const HotWarp=styled.div`
 `
 export const Bannerwrap=styled.div`
     width:100%;
+    .banner0{
+        width:100%;
+        height:4.8889rem;
+        img{
+            width:100%;
+        }
+    }
+
     .bannner1{
         width:100%;
         height:9.7187rem;

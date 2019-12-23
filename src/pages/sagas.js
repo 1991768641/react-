@@ -8,12 +8,14 @@ function* loadData(action) {
     const result = yield get({
       url: '/api2/api/getIndexFirstPaintInfo?cid=&zy_ids=p8_c4_l4&app_name=zhe&app_version=&platform=&catname=newest_zhe'
     })
+
     const newdata={
       swpierlist: result.adsInfo.slide_ads.config.slide,
       hotlist:result.adsInfo.block[0].multi_block[0].data,
-      banner1:result.adsInfo.block[0].multi_block[1].data,
-      banner2:result.adsInfo.block[0].multi_block[2].data,
-      banner3:result.adsInfo.block[0].multi_block[3].data
+      banner0:result.adsInfo.block[0].multi_block[1].data,
+      banner1:result.adsInfo.block[0].multi_block[2].data,
+      banner2:result.adsInfo.block[0].multi_block[3].data,
+      banner3:result.adsInfo.block[0].multi_block[4].data
     }
     yield put({
       type: LOADDATA,

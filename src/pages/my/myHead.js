@@ -5,7 +5,7 @@ import defaultimg from 'assets/images/default.jpg';
 
 export default (props)=>{
 
-    let [count,setcount]=useState(0);
+    let [count]=useState(0);
 
     let handleclick=()=>{
         count++;

@@ -1,5 +1,5 @@
 .am-tab-bar-bar,.am-tab-bar-tab {
-  height:2.0889rem !important;
+  height:2.1778rem !important;
 }
 
 .slideActive {
@@ -25,7 +25,10 @@
   width: 2rem;
   height: 2rem;
 }
-/* 
-.slider,.slider-frame,.slider-list,.slider-slide{
-  height:4rem !important;
-} */
+
+.am-tabs-pane-wrap{
+  background: #fff;
+}
+.am-tabs-pane-wrap:nth-child(4),.am-tabs-pane-wrap:nth-child(3){
+  background: #f4f4f8 !important;
+}

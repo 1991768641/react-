@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import mybg from 'assets/images/my_bg.png';
+import border from 'components/border/border.js';
 
 export const MyHearWrap=styled.div`
     width:100%;
@@ -52,15 +53,14 @@ export const MyHearWrap=styled.div`
                 display:flex;
                 align-items:center;
                 .head_img{
-                    width: 2.304rem;
-                    height: 2.304rem;
+                    width: 2.4818rem;
+                    height: 2.4818rem;
                     border-radius: 50%;
                     margin-left: .768rem;
                     border: 2px solid #fff;
                     overflow: hidden;
                     img{
                         width: 100%;
-                        height: auto;
                     }
                 }
                 .message{
@@ -108,3 +108,102 @@ export const MyHearWrap=styled.div`
     }
 `
 
+export const Mybodyuseritemcontent=border(
+    styled.div`
+        width:100%;
+        display: flex;
+        justify-content:space-between;
+        .label{
+            color:#999;
+            margin-right:0.3556rem;
+        }
+    `
+)
+
+export const MyBodyWrap=styled.div`
+    width:100%;
+    .user-item-horizontal{
+        width:100%;
+        position: relative;
+        height: 2.1333rem;
+        line-height: 2.1333rem;
+        padding: 0 .59733rem 0 .768rem;
+        font-size: 0.6667rem;
+        background-color: #fff;
+        color: #333;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .useritem{
+        padding-top:0.6667rem;
+        padding-bottom:0.5333rem;
+        font-size: 0;
+        background-color: #fff;
+        width:100%;
+        height:3.5289rem;
+        color:#666;
+        .usercontent{
+            display: inline-block;
+            width: 25%;
+            height:100%;
+            font-size: 0.5333rem;
+            color: #666;
+            text-align: center;
+            vertical-align: top;
+            .iconfont{
+                font-size:1.2444rem;
+            }
+
+            div{
+                margin-top:0.2667rem;
+            }
+        }
+    }
+    .useritem1{
+        margin-top: 0.4444rem;
+        width:100%;
+        background: #fff;
+    }
+    .foot{
+        margin-top: 10px;
+        width: 100%;
+        height:1.7409rem;
+        .foot-nav{
+            padding:0.5333rem 0;
+            background: #fff;
+            div{
+                display:inline-block;
+                text-align:center;
+                color: #666;
+                font-size: 0.4667rem;
+                margin: 0 auto;
+                width: 31%;
+                border-right: 1px solid #ebebeb;
+            }
+            div:last-child {
+                border-right: none;
+            }
+        }
+    }
+`
+
+export const Mybodyuseritemcontent1=border(
+    styled.div`
+        width:100%;
+        display: flex;
+        justify-content:space-between;
+        height:2.1333rem;
+        line-height: 2.1333rem;
+        padding: 0 .59733rem 0 .768rem;
+        font-size:0.6667rem;
+        background-color: #fff;
+        color: #333;
+        box-sizing: border-box;
+        overflow: hidden;
+        position:static;
+        .label{
+            color:#999;
+            margin-right:0.3556rem;
+        }
+    `
+)

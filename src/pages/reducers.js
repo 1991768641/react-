@@ -1,23 +1,29 @@
 import {
     LOADDATA,
-    ClASSDATA
+    SETSHOW
 } from 'pages/action-type.js'
 
 const defaultState = {
     list: [],
-    classifylist: []
+    classifylist: [],
+    IsShowMap:localStorage.getItem('flag')==='false'?false:true
 }
 
 export default (state = defaultState, action) => {
-    // console.log(action.data)
     switch (action.type) {
-        case ClASSDATA:
-            return {
-                classifylist: action.data
-            }
+        // case ClASSDATA:
+        //     return {
+        //         classifylist: action.data
+        //     }
         case LOADDATA:
             return {
+                ...state,
                 list: action.data
+            }
+        case SETSHOW:
+            return {
+                ...state,
+                IsShowMap:action.data
             }
         default:
             return state
