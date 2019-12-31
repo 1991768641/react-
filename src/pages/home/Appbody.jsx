@@ -25,6 +25,7 @@ const mapDispatch= dispatch=> ({
 
 @connect(mapState,mapDispatch)
 class Appbody extends Component {
+    
     componentDidMount() {
         this.props.loadData() 
     }
@@ -68,7 +69,6 @@ class Appbody extends Component {
                     )
                 }
                 <Boutique></Boutique>
-                
             </div>
         )
     }

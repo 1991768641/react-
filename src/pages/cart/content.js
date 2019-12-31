@@ -8,7 +8,7 @@ function Content(props){
     return (
         <Switch>
             <Route
-                path="/cart/menu"
+                path="/index/cart/menu"
                 render={()=>(
                     <CartBodynullWrap>
                         <div className="kong">
@@ -21,7 +21,7 @@ function Content(props){
             >
             </Route>
             <Route
-                path="/cart/map"
+                path="/index/cart/map"
                 render={()=>(
                     <CartBodynullWrap>
                         <iframe 
@@ -32,8 +32,7 @@ function Content(props){
                                 width:'100%',
                                 height:'300%'
                             }}
-                        > 
-                            
+                        >      
                         </iframe>
                     </CartBodynullWrap>
                 )}

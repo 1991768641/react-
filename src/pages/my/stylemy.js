@@ -207,3 +207,7 @@ export const Mybodyuseritemcontent1=border(
         }
     `
 )
+
+export const IsmapTrue=styled.div`
+    font-size:0.5333rem;
+`

@@ -6,23 +6,24 @@ import Goodlist from 'components/list/goodslist.jsx';
 
 
 class Boutique extends Component {
-    state={
-        classtitle:this.props.history.location.pathname.substr(1)
-    }
+    // state={
+    //     classtitle:this.props.history.location.pathname.substr(1)
+    // }
 
     handleclick=(event)=>{
         this.props.history.push('/'+event.target.title)
-        this.setState({
-            classtitle:this.props.history.location.pathname.substr(1)
-        })
+        // this.setState({
+        //     classtitle:this.props.history.location.pathname.substr(1)
+        // })
     }
-    componentDidMount(){
-        if(this.state.classtitle.length===0){
-            this.setState({
-                classtitle:'index/special'
-            })
-        }
-    }
+    
+    // componentDidMount(){
+    //     if(this.state.classtitle.length===0){
+    //         this.setState({
+    //             classtitle:'index/home/special'
+    //         })
+    //     }
+    // }
 
     render() {
         let pathname=this.props.location.pathname;
@@ -30,36 +31,21 @@ class Boutique extends Component {
             <>
                 <Boutiquewrap id="scrollstop">
                 <ul>
-                    <li onClick={this.handleclick} title="index/special">
+                    <li onClick={this.handleclick} title="index/home/special">
                         {
-                            pathname==='/index/special'?( <span className="active"  title="index/special">精品专场</span>):
-                            (<span title="index/special">精品专场</span>)
+                            pathname==='/index/home/special'?( <span className="active"  title="index/home/special">精品专场</span>):
+                            (<span title="index/home/special">精品专场</span>)
                         }
                     </li>
-                    <li onClick={this.handleclick} title="index/single">
+                    <li onClick={this.handleclick} title="index/home/single">
                         {
-                            pathname==='/index/single'?( <span className="active"  title="index/single">精选单品</span>):
-                            (<span title="index/single">精选单品</span>)
+                            pathname==='/index/home/single'?( <span className="active"  title="index/home/single">精选单品</span>):
+                            (<span title="index/home/single">精选单品</span>)
                         }
                     </li>
                 </ul>
                 </Boutiquewrap>
                 <Goodlist></Goodlist>
-                {/* <Switch>
-                    <Route
-                        path="/index/special"
-                        render={()=>(
-                            <Goodlist1></Goodlist1>
-                        )}
-                    />
-
-                    <Route
-                        path="/index/single"
-                        render={()=>(     
-                            
-                        )}
-                    />
-                </Switch> */}
             </>
         )
     }

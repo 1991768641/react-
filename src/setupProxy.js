@@ -8,11 +8,11 @@ module.exports = function(app) {
     })
   );
   app.use(
-    '/api2',
+    '/ajax',
     proxy({
-      target:'https://webservice.juanpi.com',
-      changeOrigin:true,
-      pathRewrite: {'^/api2': ''}
+      target: 'https://webservice.juanpi.com',
+      changeOrigin: true,
+      pathRewrite: {'^/ajax': ''}
     })
   );
   app.use(

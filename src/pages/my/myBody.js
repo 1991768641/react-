@@ -1,9 +1,8 @@
 import React from "react";
+import MyIsMapTrue from './myIsMapTrue.jsx';
 import {MyBodyWrap,Mybodyuseritemcontent,Mybodyuseritemcontent1} from './stylemy';
-import './myreset.css';
 
 export default (props)=>{
-
     return (
         <MyBodyWrap>
             <div className="user-item-horizontal">
@@ -90,6 +89,8 @@ export default (props)=>{
                     <div className="pcJuanpi">电脑版</div>
                 </div>
             </div>
+            <MyIsMapTrue></MyIsMapTrue>
         </MyBodyWrap>
+
     )
 }

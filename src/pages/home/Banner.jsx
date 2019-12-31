@@ -15,8 +15,13 @@ export default class Banner extends Component {
                         <img src={this.props.bannerresult1[0].child[0].pic} alt="" />
                     </div>
                     <div className="bannner1-right">
-                        <img src={this.props.bannerresult1[1].child[0].pic} alt="" />
-                        <img src={this.props.bannerresult1[1].child[1].pic} alt="" />
+                        {
+                            this.props.bannerresult1[1].child.map((value,index)=>{
+                                return (
+                                    <img src={value.pic} alt="" key={index}/>
+                                )
+                            })
+                        }
                     </div>
                 </div>
 

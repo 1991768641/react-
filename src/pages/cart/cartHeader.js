@@ -6,14 +6,12 @@ function CartHeader(props){
 
     const location = useLocation();
     const history =useHistory();
-    // console.log(location.pathname);
-
 
     let handleclick=()=>{
-        if(location.pathname==='/cart/menu'){
-            history.push('/cart/map')
+        if(location.pathname==='/index/cart/menu'){
+            history.push('/index/cart/map')
         }else{
-            history.push('/cart/menu')
+            history.push('/index/cart/menu')
         }
         
     }
@@ -22,7 +20,7 @@ function CartHeader(props){
         <CartHeaderWrap>
             <div className="map" onClick={handleclick}>
                 {
-                    location.pathname==='/cart/menu'?'地图':'返回'
+                    location.pathname==='/index/cart/menu'?'地图':'返回'
                 }
             </div>
             <div className="cart">

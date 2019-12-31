@@ -77,7 +77,7 @@ export const Bannerwrap=styled.div`
     width:100%;
     .banner0{
         width:100%;
-        height:4.8889rem;
+        height:4.8893rem;
         img{
             width:100%;
         }
@@ -85,7 +85,7 @@ export const Bannerwrap=styled.div`
 
     .bannner1{
         width:100%;
-        height:9.7187rem;
+        height:3.8369rem;
         background: #fff;
         margin-top:0px;
         .bannner1-left{
@@ -103,16 +103,16 @@ export const Bannerwrap=styled.div`
             display:inline-block;
             img{
                 width:100%;
-                height:50%;
+                height:100%;
             }
         }
     }
 
     .banner2{
         width:100%;
-        height:4.1484rem;
+        height:4.4444rem;
         div{
-            width:100%;
+            width:calc(100%/3);
             height:100%;
             display:inline-block;
             img{

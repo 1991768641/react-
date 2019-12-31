@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Goodslistwrap } from './goodsliststyled.js';
 
 import { get } from 'utils/http.js';
 import BScroll from 'better-scroll';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+
+let flag=true;
+console.log(flag);
 
 @withRouter
-class goodslist extends Component {
+class goodslist extends PureComponent {
     
     state = {
         Bscroll: '',
@@ -16,7 +19,6 @@ class goodslist extends Component {
         goodslist2:[],
         newlist1: [],
         newlist2:[]
-        // flag:this.props.flag
     }
 
     // static getDerivedStateFromProps(props, state) {
@@ -28,32 +30,46 @@ class goodslist extends Component {
     //     return null
     // }
 
+    UNSAFE_componentWillMount() {
+        flag=false
+    }
+
     async componentDidMount() {
         let result1=await get({
-            url: `https://webservice.juanpi.com/api/getGoods?page=${this.state.num}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
+            url: `/ajax/api/getGoods?page=${this.state.num1}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
         })
         let result2=await get({
-            url: `https://webservice.juanpi.com/api/getGoods?page=${this.state.num}&zy_ids=p8_c4_l4&app_name=zhe&catname=tab_hpdp&flag=tab_hpdp`
+            url: `/ajax/api/getGoods?page=${this.state.num2}&zy_ids=p8_c4_l4&app_name=zhe&catname=tab_hpdp&flag=tab_hpdp`
         })
 
-        this.setState({
-            goodslist1: result1.data.goods,
-            newlist1: result1.data.goods,
-            goodslist2: result2.data.goods,
-            newlist2: result2.data.goods
-        })
+        if(result1&&result2){
+            flag=true;
+        }
 
-        const scroll = new BScroll(document.querySelector('#box'), {
-            pullUpLoad: true,
-            probeType: 2,
-            click: true
-        })
-        this.setState({
-            Bscroll: scroll,
-        })
+        if(flag===true){
+            console.log(flag)
+            this.setState({
+                goodslist1: result1.data.goods,
+                newlist1: result1.data.goods,
+                goodslist2: result2.data.goods,
+                newlist2: result2.data.goods
+            })
+    
+            const scroll = new BScroll(document.querySelector('#box'), {
+                pullUpLoad: true,
+                probeType: 2,
+                click: true
+            })
+            this.setState({
+                Bscroll: scroll,
+            })
+    
+            this.scrolldata();
+            this.scrolltoTop();
+        }
 
-        this.scrolldata();
-        this.scrolltoTop();
+
+
         // console.log()
         // this.props.history.listen((route)=>{
         //     let newflag=route.pathname==='/special'?'special':'single';
@@ -64,22 +80,28 @@ class goodslist extends Component {
     }
 
     scrolltoTop(){
-        // let scrollstop=document.getElementById('scrollstop');
         let topdisplay=document.getElementsByClassName('topdisplay')[0];
-        
-        if (this.state.Bscroll) {
-            const { Bscroll } = this.state;
-            Bscroll.on('scroll',function(){
-                if(this.y<-400){
-                    topdisplay.style.display='block';
-                    // scrollstop.style.position='fixed';
-                    // scrollstop.style.top='700px';
-                    // scrollstop.style.zIndex='999';
-                }else{
-                    topdisplay.style.display='none';
-                }
-            })
+
+        if(this.props.location.pathname==='/index/home/special'||this.props.location.pathname==='/index/home/single'){
+            topdisplay.style.display='none';
+            if (this.state.Bscroll) {
+                const { Bscroll } = this.state;
+                Bscroll.on('scroll',function(){
+                    if(this.y<-400){
+                        topdisplay.style.display='block';
+                        // scrollstop.style.position='fixed';
+                        // scrollstop.style.top='700px';
+                        // scrollstop.style.zIndex='999';
+                    }else{
+                        topdisplay.style.display='none';
+                    }
+                })
+            }
+        }else{
+            topdisplay.style.display='none';
         }
+        
+        
     }
 
     scrolldata() {
@@ -115,10 +137,9 @@ class goodslist extends Component {
     }
 
     async loaddata(num) {
-        if (this.props.location.pathname === '/index/special') {
-           
+        if (this.props.location.pathname === '/index/home/special') {
             let result = await get({
-                url: `https://webservice.juanpi.com/api/getGoods?page=${num}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
+                url: `/ajax/api/getGoods?page=${num}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
             })
             this.setState({
                 goodslist1: [
@@ -129,7 +150,7 @@ class goodslist extends Component {
             })
         } else {
             let result = await get({
-                url: `https://webservice.juanpi.com/api/getGoods?page=${num}&zy_ids=p8_c4_l4&app_name=zhe&catname=tab_hpdp&flag=tab_hpdp`
+                url: `/ajax/api/getGoods?page=${num}&zy_ids=p8_c4_l4&app_name=zhe&catname=tab_hpdp&flag=tab_hpdp`
             })
             this.setState({
                 goodslist2: [
@@ -140,47 +161,53 @@ class goodslist extends Component {
             })
         }   
     }
+
+    handleclick=(e)=>{
+        let id=e.target.title;
+        this.props.history.push(`/details/${id}`)
+    }
+
     render() {
         let pathname=this.props.location.pathname;
         return (
             <Goodslistwrap>
                 {
-                    pathname==='/index/special'?
+                    pathname==='/index/home/special'?
                     this.state.goodslist1.map((value) => {
+                        let titles=value.goods_id+'-'+value.shop_id;
                         return (
-                            <div className="goodlist" key={value.goods_id+'1'}>
-                                <div className="content">
-                                    <div className="img">
-                                        <img src={value.pic_url} className="main" alt="" />
-                                        <img src={value.logo_url} className="right" alt="" />
-                                        <img src={value.corner} className="left" alt="" />
+                            <div className="goodlist" key={value.goods_id+'1'} onClick={this.handleclick} title={titles}>
+                                <div className="content" title={titles}>
+                                    <div className="img" title={titles}>
+                                        <img src={value.pic_url} className="main" alt="" title={titles} />
+                                        <img src={value.logo_url} className="right" alt="" title={titles}/>
+                                        <img src={value.corner} className="left" alt="" title={titles} />
                                     </div>
-                                    <div className="word1">
-                                        <span className="reduction">{value.coupon_tips}</span>
+                                    <div className="word1" title={titles}>
+                                        <span className="reduction" title={titles}>{value.coupon_tips}</span>
                                     </div>
-                                    <div className="word2">
+                                    <div className="word2" title={titles}>
                                         {value.title}
-                                        <p className="update">{value.time_left}</p>
+                                        <p className="update" title={titles}>{value.time_left}</p>
                                     </div>
                                 </div>
                             </div>
                         )
                     }):
                     this.state.goodslist2.map((value) => {
+                        let titles=value.goods_id+'-'+value.shop_id;
                         return (
-                            <div className="goodlist" key={value.goods_id+'2'}>
-                                <div className="content">
-                                    <div className="img">
-                                        <img src={value.pic_url} className="main" alt="" />
-                                        <img src={value.logo_url} className="right" alt="" />
-                                        <img src={value.corner} className="left" alt="" />
+                            <div className="goodlist" key={value.goods_id+'2'}  onClick={this.handleclick}  title={titles}>
+                                <div className="content"  title={titles}>
+                                    <div className="img"  title={titles}>
+                                        <img src={value.pic_url} className="main" alt=""  title={titles} />
                                     </div>
-                                    <div className="word1">
-                                        <span className="reduction">{value.coupon_tips}</span>
+                                    <div className="word1"  title={titles}>
+                                        <span className="reduction"  title={titles}>{value.coupon_tips}</span>
                                     </div>
-                                    <div className="word2">
+                                    <div className="word2"  title={titles}>
                                         {value.title}
-                                        <p className="update">{value.time_left}</p>
+                                        <p className="update"  title={titles}>{value.time_left}</p>
                                     </div>
                                 </div>
                             </div>

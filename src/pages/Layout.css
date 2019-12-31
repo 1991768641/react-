@@ -29,6 +29,6 @@
 .am-tabs-pane-wrap{
   background: #fff;
 }
-.am-tabs-pane-wrap:nth-child(4),.am-tabs-pane-wrap:nth-child(3){
+.am-tabs-pane-wrap:nth-child(4),.am-tabs-pane-wrap:nth-child(3),.am-tabs-pane-wrap:nth-child(1){
   background: #f4f4f8 !important;
 }

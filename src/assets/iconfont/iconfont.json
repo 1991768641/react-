@@ -32,6 +32,20 @@
       "font_class": "group",
       "unicode": "e753",
       "unicode_decimal": 59219
+    },
+    {
+      "icon_id": "1512531",
+      "name": "more_light",
+      "font_class": "more_light",
+      "unicode": "e7e3",
+      "unicode_decimal": 59363
+    },
+    {
+      "icon_id": "12489666",
+      "name": "more_light",
+      "font_class": "more_light-copy",
+      "unicode": "e7e4",
+      "unicode_decimal": 59364
     }
   ]
 }

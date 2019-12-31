@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch } from 'antd-mobile';
 import { connect } from 'react-redux';
 import {SETSHOW} from '../action-type';
+import {IsmapTrue} from './stylemy';
 
 @connect(state=>({
     IsShowMap:state.home.IsShowMap
@@ -16,7 +17,7 @@ import {SETSHOW} from '../action-type';
 class MyIsMapTure extends Component {
     render() {
         return (
-            <>
+            <IsmapTrue>
                 是否显示购车
             <Switch
                     checked={this.props.IsShowMap}
@@ -25,7 +26,7 @@ class MyIsMapTure extends Component {
                         localStorage.setItem('flag',checked)
                     }}
                 />
-            </>
+            </IsmapTrue>
         )
     }
 }
