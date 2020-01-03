@@ -1,22 +1,27 @@
-import React,{useState} from 'react';
+import React,{useState,createContext } from 'react';
 import { SmallBodyWrap } from './styledetails.js';
 import rightjiantou from 'assets/images/right.png';
 import Tabs from 'components/tab/tabs.js';
-
-function decodeUnicode(str) {
-    str = str.replace(/\\/g, "%");
-    return JSON.parse(unescape(str));
-}
+import { Modal,Toast } from 'antd-mobile';
+import Modaled from 'components/Modaled/Modaled.js';
 
 
 function DetailsSmallBody(props){
 
     let [deatailtype,settype]=useState('datail');
+    let [flag,setflag]=useState(false);
     
     let handclick=(e)=>{
         let flagtype=e.target.getAttribute('data-type');
         settype(flagtype);
     }
+
+    let chooseclick=(e)=>{
+        setflag(!flag);
+    }
+
+
+    
 
     return (
         <SmallBodyWrap>
@@ -37,8 +42,8 @@ function DetailsSmallBody(props){
                     <span className="iconfont icon-more_light" id="imgs"></span>
                 </div>
             </div>
-            <div className="reuse">
-                <div className="content">
+            <div className="reuse" >
+                <div className="content" onClick={chooseclick}>
                     <p className="select">请选择：颜色、尺码</p>
                     <img src={rightjiantou} alt="" className="rightjiantou"/>
                 </div>
@@ -118,9 +123,15 @@ function DetailsSmallBody(props){
                                 </div>
                             )
                         }
-
-                        
                     </div>
+                    <Modal
+                        popup
+                        visible={flag}
+                        onClose={()=>{setflag(!flag)}}
+                        animationType="slide-up"
+                        >
+                        <Modaled value={{flag,setflag}}></Modaled>
+                    </Modal>
                     <Tabs
                         deatailtype={deatailtype}
                     ></Tabs>

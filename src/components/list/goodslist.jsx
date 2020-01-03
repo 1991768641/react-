@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import { Goodslistwrap } from './goodsliststyled.js';
-
 import { get } from 'utils/http.js';
 import BScroll from 'better-scroll';
 import { withRouter } from 'react-router-dom';
 
 let flag=true;
-console.log(flag);
 
 @withRouter
 class goodslist extends PureComponent {
@@ -21,19 +19,10 @@ class goodslist extends PureComponent {
         newlist2:[]
     }
 
-    // static getDerivedStateFromProps(props, state) {
-    //     if (props.flag !== state.flag) {
-    //         return {
-    //             flag: props.flag
-    //         }
-    //     }
-    //     return null
-    // }
-
     UNSAFE_componentWillMount() {
         flag=false
     }
-
+    
     async componentDidMount() {
         let result1=await get({
             url: `/ajax/api/getGoods?page=${this.state.num1}&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpzc&flag=tab_hpzc`
@@ -47,7 +36,6 @@ class goodslist extends PureComponent {
         }
 
         if(flag===true){
-            console.log(flag)
             this.setState({
                 goodslist1: result1.data.goods,
                 newlist1: result1.data.goods,
@@ -63,12 +51,9 @@ class goodslist extends PureComponent {
             this.setState({
                 Bscroll: scroll,
             })
-    
             this.scrolldata();
             this.scrolltoTop();
         }
-
-
 
         // console.log()
         // this.props.history.listen((route)=>{
@@ -77,6 +62,18 @@ class goodslist extends PureComponent {
         //         flag:newflag
         //     })
         // })
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            Bscroll: '',
+            num1:1,
+            num2:1,
+            goodslist1: [],
+            goodslist2:[],
+            newlist1: [],
+            newlist2:[]
+        })
     }
 
     scrolltoTop(){

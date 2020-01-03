@@ -1,38 +1,37 @@
 import React,{useState,useEffect,useCallback  } from 'react';
 import DetailsTitle from './DetailsTitle.js';
 import DetailsSmallBody from './DetailsSmallBody.js';
+import _ from 'lodash';
 
 function DetailsBody(props){
 
-
     const [detaillist,setdetaillist]=useState([]);
+    let flag=false;
 
-    // if(props.list.length!=0){
-    //     // let result=decodeUnicode(props.list.buyBtnInfo.zg_json);
-        
-    //     setdetaillist(props.list)
-    //     // console.log(props)
-    // }
-
+    if(props.list.length!=0){
+        flag=true;
+    }
 
     useEffect(()=>{
         async function foo(){
-            await setdetaillist(props)
-            // if(props.list.length!=0){
-                
-            //     console.log(0)
-               
-            // }
+            setdetaillist(props)
         }
         foo()
-    },[])
+    },[flag])
 
-    console.log(detaillist)
+    // setTimeout(()=>{
+    //     // console.log(_.uniqBy(detaillist.list.skudata.sku,'av_zvalue'))
+    // },1000)
+    
 
     return (
         <>
-            <DetailsTitle></DetailsTitle>
-            <DetailsSmallBody></DetailsSmallBody>
+            <DetailsTitle
+                detaillist={{...detaillist}}
+            ></DetailsTitle>
+            <DetailsSmallBody
+
+            ></DetailsSmallBody>
         </>
     )
 }

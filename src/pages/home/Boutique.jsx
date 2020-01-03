@@ -6,24 +6,10 @@ import Goodlist from 'components/list/goodslist.jsx';
 
 
 class Boutique extends Component {
-    // state={
-    //     classtitle:this.props.history.location.pathname.substr(1)
-    // }
 
     handleclick=(event)=>{
         this.props.history.push('/'+event.target.title)
-        // this.setState({
-        //     classtitle:this.props.history.location.pathname.substr(1)
-        // })
     }
-    
-    // componentDidMount(){
-    //     if(this.state.classtitle.length===0){
-    //         this.setState({
-    //             classtitle:'index/home/special'
-    //         })
-    //     }
-    // }
 
     render() {
         let pathname=this.props.location.pathname;

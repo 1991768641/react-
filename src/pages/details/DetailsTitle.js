@@ -2,7 +2,33 @@ import React,{useState,useEffect,useCallback  } from 'react';
 import {TitleWrap} from './styledetails';
 import collect from 'assets/images/collect.png';
 
-function DetailsTitle(){
+
+function decodeUnicode(str) {
+    str = str.replace(/\\/g, "%");
+    return JSON.parse(unescape(str));
+}
+
+function DetailsTitle(props){
+    
+    let [details,setdetail]=useState([]);
+    let flag=false;
+    let list={};
+    let list1={};
+    let list2={};
+
+    if(props.detaillist.list!=undefined&&props.detaillist.list.length!==0){
+        flag=true;
+    }
+
+    useEffect(()=>{
+        setdetail(props.detaillist.list);
+    },[flag])
+
+    if(details&&details.length!==0){
+        list=decodeUnicode(details.buyBtnInfo.zg_json);
+        list1=details.skudata.info;
+    }
+
 
     return (
         <TitleWrap>
@@ -12,18 +38,18 @@ function DetailsTitle(){
                         <span className="moreprice">
                             <span className="oldprice">
                                 <span className="danwei">¥</span>
-                                52
+                                {list.商品单价}
                             </span>
-                            <span className="newprice">¥159</span>
+                            {/* <span className="newprice">¥159</span> */}
                         </span>
                         <span className="baoyou">
                             包邮
                         </span>
                     </div>
-                    <span className="buyed">2403人已购</span>
+                    <span className="buyed">{list1.join_number}</span>
                 </div>
                 <div className="content">
-                    <p className="word">冬季新款韩版超长款加厚保暖毛衣裙女过膝修身显瘦包臀针织连衣裙</p>
+                    <p className="word">{list.商品名称}</p>
                     <img className="btn" src={collect} alt=""></img>
                 </div>
             </div>
